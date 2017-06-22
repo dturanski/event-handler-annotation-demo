@@ -1,10 +1,19 @@
 /*
- * Copyright (C) 2016, Liberty Mutual Group
+ * Copyright 2016 the original author or authors.
  *
- * Created on Dec 2, 2016
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
-
-package com.example;
+package com.example.annotation;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -14,12 +23,11 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 import org.springframework.cloud.stream.annotation.StreamListener;
+import org.springframework.cloud.stream.messaging.Sink;
 import org.springframework.core.annotation.AliasFor;
 /**
- * Method annotation to enable a messaging endpoint to handle corresponding event
- * types
  * 
- * @author n0296322
+ * @author David Turanski
  *
  */
 @StreamListener
@@ -32,7 +40,7 @@ public @interface EventHandler {
 	 * The name of the binding target (e.g. channel) that the method subscribes to.
 	 * @return the name of the binding target.
 	 */
-	@AliasFor(annotation=StreamListener.class, attribute="target")
+	@AliasFor(annotation=StreamListener.class, attribute="condition")
 	String value() default "";
 
 	/**
@@ -40,12 +48,12 @@ public @interface EventHandler {
 	 * @return the name of the binding target.
 	 */
 	@AliasFor(annotation=StreamListener.class, attribute="target")
-	String target()  default "";
+	String target()  default Sink.INPUT;
 
 	/**
 	 * A condition that must be met by all items that are dispatched to this method.
 	 * @return a SpEL expression that must evaluate to a {@code boolean} value.
 	 */
 	@AliasFor(annotation=StreamListener.class, attribute="condition")
-	String condition() default "";
+	String eventType() default "";
 }

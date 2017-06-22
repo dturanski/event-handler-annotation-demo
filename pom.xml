@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.example</groupId>
-	<artifactId>demo</artifactId>
+	<artifactId>event-handler-annotation-demo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>stream-listener-annotation-demo</name>
-	<description>Demo using @StreamListener as meta anotation</description>
+	<name>event-handler-annotation-demo</name>
+	<description>Demo using @StreamListener as @EventHandler meta anotation</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -25,23 +25,10 @@
 	</properties>
 
 	<dependencies>
-	<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-stream-rabbit</artifactId>
-			<exclusions>
-			 <exclusion>
-			    <groupId>org.springframework.cloud</groupId>
-			 	<artifactId>spring-cloud-stream</artifactId>
-			 </exclusion>
-			</exclusions>
-		</dependency>
-		
 		<dependency>
 		    <groupId>org.springframework.cloud</groupId>
 			 <artifactId>spring-cloud-stream</artifactId>
-			 <version>1.2.0.BUILD-SNAPSHOT</version>
 		</dependency>
-		
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -61,8 +48,8 @@
 		<dependencies>
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>Camden.SR5</version>
+				<artifactId>spring-cloud-stream-dependencies</artifactId>
+				<version>Chelsea.SR2</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
